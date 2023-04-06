@@ -2,11 +2,13 @@ import os
 import telebot
 import schedule
 from time import sleep
+from dotenv import load_dotenv
 from parser_data import post_search
 
+load_dotenv()
 
-token = os.environ["tocen"]
-channel_id = os.environ["channel"]
+token = os.environ.get("token")
+channel_id = "@IT_information_Lasto"
 bot = telebot.TeleBot(token)
 last_post = ""
 
