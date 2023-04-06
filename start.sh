@@ -5,6 +5,8 @@ set -eu
 
 # Python buffers stdout. Without this, you won't see what you "print" in the Activity Logs
 export PYTHONUNBUFFERED=true
+export tocen=5430000814:AAH3hqbPN3u-_-Rj3xMs40IDtVoBROsM9NM
+export channel=IT_information_Lasto
 
 # Install Python 3 virtual env
 VIRTUALENV=./venv
