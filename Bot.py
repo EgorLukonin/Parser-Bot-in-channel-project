@@ -18,8 +18,9 @@ def check_posts():
     last_post = post_search(last_post, bot, channel_id)
 
 
-schedule.every(3).hours.do(check_posts)
-if __name__ == '__main__':
+@bot.message_handler(commands=["start"])
+def start_bot(message):
+    schedule.every(10).seconds.do(check_posts)
     while True:
         schedule.run_pending()
         sleep(1)
