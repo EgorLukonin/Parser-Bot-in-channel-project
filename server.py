@@ -7,7 +7,8 @@ from parser_data import post_search
 
 load_dotenv()
 
-token = os.environ.get("token")
+token = os.environ.get("TOKEN")
+admin_id = int(os.environ.get("ADMIN_ID"))
 channel_id = "@IT_information_Lasto"
 bot = telebot.TeleBot(token)
 last_post = ""
@@ -20,10 +21,15 @@ def check_posts():
 
 @bot.message_handler(commands=["start"])
 def start_bot(message):
-    schedule.every(20).seconds.do(check_posts)
-    while True:
-        schedule.run_pending()
-        sleep(1)
+    user_id = message.from_user.id
+    if user_id != admin_id:
+        bot.send_message(message.from_user.id, "Вы не являетесь администратором")
+    else:
+        bot.send_message(message.from_user.id, "Бот запущен")
+        schedule.every(1).hours.do(check_posts)
+        while True:
+            schedule.run_pending()
+            sleep(1)
 
 
 bot.polling()
