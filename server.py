@@ -20,7 +20,7 @@ def check_posts():
 
 @bot.message_handler(commands=["start"])
 def start_bot(message):
-    schedule.every(10).seconds.do(check_posts)
+    schedule.every(20).seconds.do(check_posts)
     while True:
         schedule.run_pending()
         sleep(1)
