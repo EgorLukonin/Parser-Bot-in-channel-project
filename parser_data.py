@@ -11,10 +11,10 @@ def post_search(last_post, bot, channel_id):
     link_post = str(post.find("a", class_="pos-abs pos-cover zi-1")).split()
     link_post = link_post[4][6:-6]
 
-    # if link_post != last_post:
-    parser_data_post(link_post, bot, channel_id)
-    last_post = link_post
-    return last_post
+    if link_post != last_post:
+        parser_data_post(link_post, bot, channel_id)
+        last_post = link_post
+        return last_post
 
 
 def parser_data_post(link_post, bot, channel_id):
