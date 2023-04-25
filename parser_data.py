@@ -24,7 +24,8 @@ def parser_data_post(link_post, bot, channel_id):
     post = soup.find("article", class_="cm-article font-style-1")
 
     title = post.find("h1").text.strip()
-    description = post.find("div", class_="cm-article__content js-article-content wb-bw").text.strip()
-    text_post = f"""<b>{title}</b>\n\n{description}\n\nhttps://timeweb.com{link_post}"""
-
+    description = soup.find("div", class_="cm-article__content js-article-content wb-bw").text.strip().split("\n")[:2]
+    paragraph_one = description[0]
+    paragraph_two = description[1]
+    text_post = f"""<b>{title}</b>\n\n{paragraph_one}\n\n{paragraph_two}\n\nhttps://timeweb.com{link_post}"""
     bot.send_message(channel_id, text_post, parse_mode='html')
